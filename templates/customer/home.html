@@ -1,0 +1,275 @@
+{% extends 'base/basic.html' %}
+{% load static %}
+
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'customer_css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <style>
+        #catg {
+            background-image: url('/static/images/customer_images/category-bg.jpg');
+            background-size: cover;
+            /* background-position: center; */
+            padding: 20px;
+        }
+
+        .carousel-item .card {
+            backdrop-filter: blur(10px);
+        }
+
+        #catg>h2 {
+            text-align: center;
+            font-size: 2.8rem;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: url("/static/images/customer_images/cover.jpg") no-repeat;
+            background-size: cover;
+            
+        }
+
+        body::before{
+            backdrop-filter: none;
+        }
+
+        marquee {
+            width: 100%;
+            position: relative;
+            z-index: 999;
+            background-color: white;
+            height: 45px;
+            line-height: 40px;
+            margin-bottom: 5rem;            
+            background-color: white;
+            backdrop-filter: blur(10px);
+        }
+        /* marquee {
+            width: 100%;
+            position: relative;
+            z-index: 999;
+            background-color: white;
+            height: 150px;
+            line-height: 30px;
+            margin-bottom: 5rem;            
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+        } */
+
+        /*  */
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollLeft 10s linear infinite;
+        }
+
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+
+        /* .category-marquee-circle {
+            display: inline-block;
+            margin: 0 10px;
+            text-align: center;
+            position: relative;
+            text-decoration: none;
+            color: white;
+            height: 100%;
+            
+            padding: 2rem;
+            border-radius: 10%;
+            transition: all 0.5s ease;
+        } */
+
+/*         
+
+        .category-marquee-circle:hover {
+            background-color: #FF204E;
+            scale: 1.02;
+        }
+
+        .category-marquee-circle img {
+            border-radius: 50px;
+        }
+
+        .category-marquee-circle h4 {
+            position: absolute;
+            top: 1px;
+            left: 21%;
+            font-size: 20px;
+        } */
+
+        .category-marquee-circle  {
+            display: inline-block;
+            position: relative;
+            padding: 0.4rem;
+            color: black;
+            transition: all 0.5s all;
+            
+        }
+
+        .category-marquee-circle:hover {
+            
+            scale: 1.02;
+            background-color: red;
+            color: white;
+        }
+
+        .category-marquee-circle h4 {
+            text-decoration: none;
+            font-size: 17px;
+            
+        }
+
+        
+
+    </style>
+    
+   <!-----------------------------Carousel Start---------------------------------------->
+
+   <div class="carousel-custom">
+
+    <div class="carousel-inner-custom">
+
+        <div class="carousel-item-custom active a">
+            <img src="{% static 'images/customer_images/caro_1.jpg' %}" alt="" class="icon">
+        </div>
+        <div class="carousel-item-custom not-active b">
+            <img src="{% static 'images/customer_images/caro_2.jpg' %}" alt="" class="icon">
+        </div>
+        <div class="carousel-item-custom not-active c">
+            <img src="{% static 'images/customer_images/caro_3.jpg' %}" alt="" class="icon">
+        </div>
+        <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
+    <button class="carousel-control next" onclick="nextSlide()">&#10095;</button> 
+
+    </div>
+
+    
+    <div class="content-carousel">
+        <h2>WELCOME</h2>
+        <h4>HOMIES!</h4>
+    </div>  
+
+</div>
+
+<marquee onmouseover="stop()" onmouseout="start()" direction="left">
+    
+
+    <!-- <a class="category-marquee-circle" href="">
+        <img src="{% static 'images/customer_images/cat-bev.jpeg' %}" alt="" width="100px" height="100px">
+        <h4><strong>Beverage</strong></h4>
+    </a> &nbsp; &nbsp;&nbsp; &nbsp;
+    <a class="category-marquee-circle" href="">
+        <img src="{% static 'images/customer_images/cat-bev.jpeg' %}" alt="" width="100px" height="100px">
+        <h4><strong>Beverage</strong></h4>
+    </a> &nbsp; &nbsp;&nbsp; &nbsp;
+    <a class="category-marquee-circle" href="">
+        <img src="{% static 'images/customer_images/cat-bev.jpeg' %}" alt="" width="100px" height="100px">
+        <h4><strong>Beverage</strong></h4>
+    </a> &nbsp; &nbsp;&nbsp; &nbsp;
+    <a class="category-marquee-circle" href="">
+        <img src="{% static 'images/customer_images/cat-bev.jpeg' %}" alt="" width="100px" height="100px">
+        <h4><strong>Beverage</strong></h4>
+    </a> &nbsp; &nbsp;&nbsp; &nbsp; -->
+    <a class="category-marquee-circle" href="">
+        <!-- <img src="{% static 'images/customer_images/cat-bev.jpeg' %}" alt="" width="100px" height="100px"> -->
+        <h4><strong>Beverage</strong></h4>
+    </a> &nbsp; &nbsp;&nbsp; &nbsp;
+    <a class="category-marquee-circle" href="">
+        <!-- <img src="{% static 'images/customer_images/cat-bev.jpeg' %}" alt="" width="100px" height="100px"> -->
+        <h4><strong>Beverage</strong></h4>
+    </a> &nbsp; &nbsp;&nbsp; &nbsp;
+    <a class="category-marquee-circle" href="">
+        <!-- <img src="{% static 'images/customer_images/cat-bev.jpeg' %}" alt="" width="100px" height="100px"> -->
+        <h4><strong>Beverage</strong></h4>
+    </a> &nbsp; &nbsp;&nbsp; &nbsp;
+    <a class="category-marquee-circle" href="">
+        <!-- <img src="{% static 'images/customer_images/cat-bev.jpeg' %}" alt="" width="100px" height="100px"> -->
+        <h4><strong>Beverage</strong></h4>
+    </a> &nbsp; &nbsp;&nbsp; &nbsp;
+    
+    
+    
+
+</marquee>
+
+<div class="reserve-table-section-new">
+    <div class="reserve-content">
+        <h2>Reserve A Table!</h2>
+        <a href="{% url 'Reservation' %}">Reserve</a>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi corrupti accusamus repellendus quis sit, iure ut dolorum, numquam iste, nemo doloribus! Soluta ea incidunt impedit quibusdam velit sed animi aliquid!</p>
+    </div>
+    <div class="reserve-img">
+        <img src="{% static 'images/customer_images/reservation_img2.jpg' %}" alt="">
+    </div>
+    
+  </div>
+
+
+
+<!-----------------------------Carousel Ends---------------------------------------->
+
+<!------------------------------- Category START------------------------------------>
+<div class="row">
+    <div class="col" id="catg">
+        <h2 class="mb-5">Categories</h2>
+        <!------------------------------CARD SLIDER START---------------------->
+        <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="carousel-inner">
+                
+                <!-- Cards will be inserted here dynamically -->
+                {% for category in categories %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="card text-center mx-auto">
+                        <img src="{{ category.category_image.url }}" class="card-img-top" alt="{{ category.category_name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.category_name }}</h5>
+                            <p class="card-text">{{ category.category_description }}</p>
+                            <div class="card-icon">
+                                <a href="{% url 'categories-cards' category_name=category.category_name %}">
+                                    <button type="button" class="btn btn-outline-primary" style="width:25%; color: black; border-color: black; border-radius: 15px;">Go!</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+
+                 
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!--------------------------------CARD SLIDER END---------------------------->
+    </div>
+</div>
+<!------------------------------- Category ENDs------------------------------------>
+{% endblock %}
