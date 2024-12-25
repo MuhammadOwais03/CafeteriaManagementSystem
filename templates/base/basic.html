@@ -1,0 +1,425 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Custom Css -->
+     <!-- Zobo css -->
+    <link rel="stylesheet" href="{% static 'customer_css/cus_style.css' %}">
+
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    
+
+    <!-- Extra Css -->
+    {% block extra_css %}
+    {% endblock %}
+
+
+    <!-- Extra JS -->
+    {% block extra_js %}
+    {% endblock %}
+    <title>CAFETERIA MANAGEMENT SYSTEM</title>
+</head>
+<body>
+
+    <style>
+            body {
+                overflow-x: hidden;
+            }
+
+            /* .footer {
+    background: linear-gradient(to right, rgb(46, 45, 45), black);;
+    color: white;
+    padding: 40px 0;
+    
+   
+  } */
+            .nav-item {
+                    padding: 1rem 2rem;
+                }
+
+            .nav-item .nav-link{
+                        color: white;
+                        text-decoration: none;
+                        font-size: 1.4rem;
+                        font-weight: bold;
+                        padding-left: 1rem;
+                        display: block;
+                        width: 100%;
+                        transition: all 0.3s ease-in-out;
+                        position: relative;
+                        text-align: left;
+                }
+
+            .nav-item .nav-link:hover {
+                    scale: 1.02;
+                    color: orange;
+                }
+
+            .nav-item .nav-link::before{
+                    content: "";
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    background-color: red;
+                    left: -20px;
+                    top: 35%;
+                    transform: rotate(45deg) ;
+                    transition: all 0.3s ease-in-out;
+                }
+
+            .nav-item .nav-link:hover::before{
+                    transform: rotate(360deg);
+                }
+            .offcanvas-title {
+                    font-size: 2.5rem;
+                    font-weight: bolder;
+                    color: white;
+                    text-align: center;
+                    margin-bottom: 1rem;
+                    outline: none;
+                    padding: 0 1rem;
+                    
+                }
+                #offcanvasNavbar{
+                background-color: black;
+                color: white;
+                box-shadow: 0 0 15px 5px rgba(100, 100, 99, 0.361);
+                border: none;
+            }
+
+            .category-offcanva-div {
+                position: relative;
+                height: 100vh;
+                width: 30%;
+                /* padding: 2rem 1rem; */
+                padding-top: 4rem;
+                background-color: black;
+                color: black;
+                z-index: 1040px;
+                position: fixed;
+                left: -1000000px;
+                transition: all 0.5s ease-in-out;
+                /* position: relative; */
+                /* backdrop-filter: brightness(0.5); */
+                color: white;
+                box-shadow: 0 0 15px 5px rgba(100, 100, 99, 0.36);
+                overflow-x: hidden;
+
+            }
+
+
+            .category-offcanva-div::-webkit-scrollbar {
+                width:10px;
+                }
+                
+            .category-offcanva-div::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                
+            }
+                
+            .category-offcanva-div::-webkit-scrollbar-thumb {
+                background-color: red;
+                outline: 1px solid black;
+                border-radius: 20px;
+            }
+
+            
+            .category-offcanva-div h1 {
+                margin-left: 3rem;
+                font-weight: bolder;
+                
+            }
+
+            .category-offcanva-div ul {
+                margin-top: 3rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            .category-offcanva-div ul li {
+                padding: 2rem;
+                list-style: none;
+            }
+
+            .category-offcanva-div ul li a {
+                text-decoration: none;
+                color: white;
+                font-size: 1.5rem;
+                display: block;
+                position: relative;
+                
+            }
+
+
+            .category-offcanva-div ul li a span {
+                
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: red;
+                left: -20px;
+                top: 30%;
+                transform: rotate(45deg) ;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .category-offcanva-div ul li a:hover span {
+                transform: rotate(360deg);
+            }
+            
+            
+            .category-offcanva-not-active {
+                left: -1000px;
+            }
+
+
+
+            
+
+            .category-offcanva-active {
+                left: 0;
+                
+            }
+
+            
+
+            .arrow-back {
+                position: absolute;
+                right: 20px;
+                top: 8px;
+                cursor: pointer;
+                font-size: 2rem;
+            }
+
+            .modal-backdroP {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: -99;
+                display: none; /* Initially hidden */
+            }
+
+            .category-offcanva-div.category-offcanva-active .modal-backdroP {
+                display: block; /* Show the overlay */
+            }
+
+
+            @media (max-width:1016px) {
+                .category-offcanva-div h1 {
+                    margin-left: 1rem;
+                }
+
+                /* .category-offcanva-div {
+                    width: 81%;
+                } */
+            }
+
+            @media (max-width:859px) {
+                .category-offcanva-div {
+                    width: 40%;
+                }
+            }
+
+            @media (max-width:700px) {
+                .category-offcanva-div {
+                    width: 80%;
+                    
+                }
+            }
+
+
+
+    </style>
+        
+    <div class="container-fluid ps-0 pe-0">        
+    <!---------------------------------------------NAV BAR START------------------>
+        <div class="row">
+            <div class="col-12">
+                <nav id="navbar" class="navbar fixed-top">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="{% url 'home' %}" id="navbar-heading">C for Cafeteria</a>
+                        <div class="d-flex ms-auto">
+                            {% if not user.is_authenticated %}
+                            <!-- Login Button -->
+                            <button class="btn btn-primary me-2" type="button" id="login-btn">
+                                <a href="{% url 'signup' %}" style="text-decoration: none; color: inherit; background-color: inherit;">Login</a>
+                            </button>
+                            {% else %}
+                            <button class="btn btn-primary me-2" type="button" id="login-btn">
+                                <a href="{% url 'order-tables-user' %}" style="text-decoration: none; color: inherit; background-color: inherit;">Order History</a>
+                            </button>
+                            <button class="btn btn-primary me-2" type="button" id="login-btn">
+                                <img src="{% static 'icons/user-regular.svg' %}" height="20px" width="20px">
+                                {{user.email}}
+                            </button>
+                            <button class="btn btn-primary me-2" type="button" id="login-btn">
+                                <a href="{% url 'signout' %}" style="text-decoration: none; color: inherit; background-color: inherit;">Logout</a>
+                            </button>
+                            
+                            {% endif %}
+                            <!-- Navbar Toggler -->
+                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                                <img src="{% static 'icons/navbar-bars.svg' %}" height="40px" width="40px">
+                            </button>
+                        </div>
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                                <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'Cart' %}">Cart</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'Reservation' %}">Reserve a Table!</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link catagories-link" href="">Catagories</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Contact Us</a>
+                                    </li>
+                                    
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-------------------------------NAV BAR END------------------------------------>
+
+        <!----------------------   Category Offcanva Start   ----------------------------- -->
+
+
+        <div class="category-offcanva-div category-offcanva-not-active" style="overflow-y: scroll;">
+            <h1>CATAGORIES</h1>
+
+            <ul class="category-offcanva-inner" >
+                {% for category in categories %}
+                <li><a href="{% url 'categories-cards' category_name=category.category_name %}">{{category.category_name}} <span></span></a></li>
+                {% endfor %}
+                
+            </ul>
+            <div class="arrow-back">
+                &#8592;
+            </div>
+            <div class="modal-backdroP"></div>
+
+        </div>
+
+
+
+
+        <!----------------------   Category Offcanva  End ----------------------------- -->
+        
+        <div class = "row">
+            <div class = "col">
+        {% block content %}{% endblock %}
+            </div>
+        </div>
+    
+        <!-------------------------FOOTER START--------------------------->
+        
+        
+                <!-- <footer class="footer">
+                    <div class="container text-center">
+                      <h5 class="mb-4">Follow Us</h5>
+                      <div class="social-icons">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                        <a href="#" class="fab fa-linkedin-in"></a>
+                      </div>
+                      <hr class="my-4">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h6>Quick Links</h6>
+                          <ul class="list-unstyled">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact</a></li>
+                          </ul>
+                        </div>
+                        <div class="col-md-4">
+                          <h6>Resources</h6>
+                          <ul class="list-unstyled">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Support</a></li>
+                          </ul>
+                        </div>
+                        <div class="col-md-4">
+                          <h6>Legal</h6>
+                          <ul class="list-unstyled">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <hr class="my-4">
+                      <p>&copy; 2024  C for Cafeteria</p>
+                    </div>
+                  </footer> -->
+            
+
+        <!-------------------------FOOTER END----------------------------->
+    </div>
+
+
+
+    <!-- Bootstrap Javascript -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    <!-- Custom Javascript -->
+    <script src="{% static 'javascript/home.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <!-- Zobo Javascript -->
+    <script src="{% static 'javascript/cus_script.js' %}" ></script>
+
+    <script>
+        let cat_menu_offcanva_btn = document.querySelectorAll(".catagories-link")
+        let arrow_back = document.querySelector(".arrow-back")
+
+console.log(cat_menu_offcanva_btn)
+
+cat_menu_offcanva_btn.forEach((cat_btn)=>{
+  console.log("Enter")
+  cat_btn.addEventListener('click', (e)=>{
+    e.preventDefault()
+    let category_offcanva_div = document.querySelector('.category-offcanva-div')
+    category_offcanva_div.classList.remove('category-offcanva-not-active')
+    category_offcanva_div.classList.add('category-offcanva-active')
+  })
+})
+
+arrow_back.addEventListener('click', (e)=>{
+    e.preventDefault();
+    let category_offcanva_div = document.querySelector('.category-offcanva-div')
+    category_offcanva_div.classList.remove('category-offcanva-active')
+    category_offcanva_div.classList.add('category-offcanva-not-active')
+})
+
+
+    </script>
+</body>
+</html>
